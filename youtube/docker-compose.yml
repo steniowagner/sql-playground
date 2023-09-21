@@ -5,8 +5,6 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: user
-      POSTGRES_DB: sql_playground
+      POSTGRES_DB: youtube
     ports:
       - "5432:5432"
-# docker compose up
-# docker exec -it <container_name> psql -U user sql_playground
