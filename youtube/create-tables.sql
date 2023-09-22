@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS user_profile (
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
-    gender TEXT CHECK(gender IN ('MALE', 'FEMALE')) NOT NULL,
+    gender TEXT CHECK(gender IN ('M', 'F')) NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL
 );
 
@@ -53,9 +53,10 @@ CREATE TABLE IF NOT EXISTS video_comment (
 );
 
 CREATE TABLE IF NOT EXISTS video_like (
-    video_id BIGINT PRIMARY KEY REFERENCES video(id),
+    video_id BIGINT REFERENCES video(id),
     account_id BIGINT REFERENCES account(id),
-    created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL
+    created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    PRIMARY KEY (video_id, account_id)
 );
 
 CREATE TABLE IF NOT EXISTS video_comment_like (
@@ -64,3 +65,4 @@ CREATE TABLE IF NOT EXISTS video_comment_like (
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     PRIMARY KEY (video_comment_id, account_id)
 );
+
